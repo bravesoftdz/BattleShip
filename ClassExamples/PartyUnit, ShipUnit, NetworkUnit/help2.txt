@@ -1,0 +1,34 @@
+	function TParty.getWhoGo : String;
+
+	Result - имя игорока который сейчас ходит.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	procedure TParty.setWhoGo(Number : byte);
+
+	Number - номер игрока.
+	устанавливает ход игрока Number;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	procedure TParty.setNext;
+
+	Процедура  передает ход следующему игрока.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	function TParty.getShipsArray : Tarr;
+
+	Result - массив кораблей игрока.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	function TParty.getPlayerParameters(Number: byte): TPlayer;	
+
+	Number - номер игрока.
+	Result - данные игрока под номером Number.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	procedure TParty.setPlayerParameters(Number: byte; Name, Address: string);
+		
+	Number - номер игрока.
+	Name - имя игрока.
+	Address - IP адрес игрока.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

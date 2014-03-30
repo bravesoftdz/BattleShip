@@ -1,0 +1,36 @@
+        function TShip.getElement(Number: byte): ShipElement;
+
+        Number - номер палубы.
+        Rsult - ShipElement = record
+                    X, Y: byte;
+                    Status : Boolean;
+                end;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        function TShip.getElementsCount: byte;
+
+        Result - кол-во палуб корабля.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        function TShip.getHealth: byte;
+
+        Result - кол-во не взорваных палуб.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        procedure TShip.setElementsCount(Count: byte);
+
+        Count - кол-во устанавлеваемых палуб.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        procedure TShip.setStatus(Number: byte; Status: Boolean);
+
+        Number - номер палубы.
+        Status - состояние палубы(true - не взорвана/false - взорвана);
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        procedure TShip.setElementLocation(Number, X, Y : byte);
+
+        Number - номер палубы.
+        X - координата х;
+        Y - координата y;
+
