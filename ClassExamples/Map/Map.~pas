@@ -318,19 +318,19 @@ begin
     end else begin
 
       if pos.y > pos1.y then begin
-        d:=pos.y-pos1.y;
+        d:=pos.y-pos1.y+1;
       if Cship[d, 1] = 5 then
         Result:=False;
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 4-d then
+      if Cship[d, 0] = 5-d then
         Cship[d, 1]:=5;
       end else begin
 
-        d:=pos1.y-pos.y;
+        d:=pos1.y-pos.y+1;
       if Cship[d, 1] = 5 then
         Result:=False;
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 4-d then
+      if Cship[d, 0] = 5-d then
         Cship[d, 1]:=5;
       end;
     end;
@@ -338,18 +338,18 @@ begin
   end else begin
 
     if pos.x > pos1.x then begin
-      d:=pos.x-pos1.x;
+      d:=pos.x-pos1.x+1;
       if Cship[d, 1] = 5 then
         Result:=False;
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 4-d then
+      if Cship[d, 0] = 5-d then
         Cship[d, 1]:=5;
     end else begin
-      d:=pos1.x-pos.x;
+      d:=pos1.x-pos.x+1;
       if Cship[d, 1] = 5 then
         Result:=False;
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 4-d then
+      if Cship[d, 0] = 5-d then
         Cship[d, 1]:=5;
     end;
   end;

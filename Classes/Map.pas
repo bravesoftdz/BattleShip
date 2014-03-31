@@ -72,7 +72,8 @@ end;
 function TMap.PlaceShip(pos1, pos2: TCoord):Boolean;
 var diff:integer;
 begin
-{ќтрисовывает сам корабль}
+{ќсуществл€ет проверки, после чего зносит корабль(в виде цифры 5)
+в массив pole}
 
   Result:=PlaceCheck(pos1,pos2);
   if Result then
@@ -130,7 +131,8 @@ var d:integer;
 begin
 
 {—овершает проверку
-можно ли поставить корабль или нет}
+можно ли поставить корабль или нет
+т.е. не зан€та ли клеточка каким-либо числом}
 
   Result:=true;
   if pos1.x = pos2.x then begin
@@ -204,7 +206,8 @@ procedure TMap.PlaceDead(pos1 : TCoord; pos2 : TCoord);
 var a, b:integer;
 n:boolean;
 begin
-{–асставл€ет зоны, куда нельз€ ставить корабли}
+{–асставл€ет зоны, куда нельз€ ставить корабли
+и обозначает их двойками}
 
   n:=true;
   if pos1.x = pos2.x then begin
@@ -305,6 +308,8 @@ end;
 function TMap.CountShips(pos, pos1: TCoord): Boolean;
 var d:integer;
 begin
+{Ётот метод провер€ет колличество кораблей}
+
   Result:=True;
 
   if pos.x = pos1.x then begin

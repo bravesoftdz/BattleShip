@@ -38,6 +38,8 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 var i, j:integer;
 begin
+{Отрисовывает поле}
+
   Map:=TMap.Create;
   StringGrid1.ColCount := 11;
   StringGrid1.RowCount := 11;
@@ -74,10 +76,12 @@ procedure TForm1.StringGrid1MouseUp(Sender: TObject; Button: TMouseButton;
 var i, j, d : integer;
     b:Boolean;
 begin
+{Узнаёт координаты корабля, после чего передаёт
+их в класс. Там эта информация записывается в массив.
+После чего выводим весь массив...}
   d:=0;
   for i:=StringGrid1.Selection.Left to StringGrid1.Selection.Right do begin
     for j:=StringGrid1.Selection.Top to StringGrid1.Selection.Bottom do begin
-//      ShowMessage('Col '+IntToStr(i)+' Row: '+IntToStr(j)+'  value = '+StringGrid1.Cells[i,j]);
 
       if d = 0 then begin
         d:=d+1;
@@ -120,6 +124,7 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 var i, j:integer;
 begin
+{Обнуляет массив и выводит его...}
   Map.Create;
   for i:=1 to 10 do begin
       for j:=1 to 10 do begin
