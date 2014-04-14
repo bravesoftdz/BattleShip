@@ -6,13 +6,12 @@ Type
    x : integer;
    y : integer;
   end;
-  TBuf = array[1..40] of byte;
+  TSArr = array[1..40] of byte;
 
 
   TMap = class
    private
     pole:array[0..11, 0..11]of integer;
-    Cship:array[1..4, 0..1]of integer;
     Ships:array[1..4]of string;
     function PlaceCheck(pos1 : TCoord; pos2 : TCoord):Boolean;
     procedure PlaceDead(pos1 : TCoord; pos2 : TCoord);
@@ -25,8 +24,11 @@ Type
     procedure PlaceHit(pos : TCoord);
     function CountShips(pos, pos1 : TCoord):Boolean;
     function GetAllCoord: TBuf;
+    procedure AllArrangement;
   End;
 
+var
+  Cship:array[1..4, 0..1]of integer;
 
 implementation
 
@@ -51,6 +53,9 @@ begin
       Cship[i,j]:=0;
     end;
   end;
+
+//  writeln('my address'+ inttostr(integer(Self)) );
+
 end;
 
 destructor TMap.Destroy;
@@ -66,6 +71,9 @@ end;
 
 function TMap.Draw(pos : TCoord):integer;
 begin
+  if (pos.x = 0) and (pos.y = 0) then begin
+    pole[pos.x, pos.y]:=0;
+  end;
   Result:=pole[pos.x, pos.y];
 end;
 
@@ -359,28 +367,34 @@ begin
   if pos.x = pos1.x then begin
 
     if pos.y = pos1.y then begin
-      if Cship[1, 1] = 5 then
+      if Cship[1, 1] = 5 then begin
         Result:=False;
+      end else begin
         Cship[1, 0]:=Cship[1, 0]+1;
-      if Cship[1, 0] = 4 then
-        Cship[1, 1]:=5;
+        if Cship[1, 0] = 4 then
+          Cship[1, 1]:=5;
+      end;
     end else begin
 
       if pos.y > pos1.y then begin
         d:=pos.y-pos1.y+1;
-      if Cship[d, 1] = 5 then
-        Result:=False;
-        Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 5-d then
-        Cship[d, 1]:=5;
+        if Cship[d, 1] = 5 then begin
+          Result:=False;
+        end else begin
+          Cship[d, 0]:=Cship[d, 0]+1;
+          if Cship[d, 0] = 5-d then
+            Cship[d, 1]:=5;
+        end;
       end else begin
 
         d:=pos1.y-pos.y+1;
-      if Cship[d, 1] = 5 then
-        Result:=False;
-        Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 5-d then
-        Cship[d, 1]:=5;
+        if Cship[d, 1] = 5 then begin
+          Result:=False;
+        end else begin
+          Cship[d, 0]:=Cship[d, 0]+1;
+          if Cship[d, 0] = 5-d then
+            Cship[d, 1]:=5;
+        end;
       end;
     end;
 
@@ -388,23 +402,27 @@ begin
 
     if pos.x > pos1.x then begin
       d:=pos.x-pos1.x+1;
-      if Cship[d, 1] = 5 then
+      if Cship[d, 1] = 5 then begin
         Result:=False;
+      end else begin
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 5-d then
-        Cship[d, 1]:=5;
+        if Cship[d, 0] = 5-d then
+          Cship[d, 1]:=5;
+      end;
     end else begin
       d:=pos1.x-pos.x+1;
-      if Cship[d, 1] = 5 then
+      if Cship[d, 1] = 5 then begin
         Result:=False;
+      end else begin
         Cship[d, 0]:=Cship[d, 0]+1;
-      if Cship[d, 0] = 5-d then
-        Cship[d, 1]:=5;
+        if Cship[d, 0] = 5-d then
+          Cship[d, 1]:=5;
+      end;
     end;
   end;
 end;
 
-function TMap.GetAllCoord: TBuf;
+function TMap.GetAllCoord: TSArr;
 var i, n:integer;
 res:string;
 begin
@@ -419,6 +437,16 @@ begin
     GetAllCoord[n]:=strtoint(copy(res, 1, i-1));
     delete(res, 1, i);
     n:=n+1;
+  end;
+end;
+
+procedure TMap.AllArrangement;
+var i, j:integer;
+begin
+  for i:=0 to 11 do begin
+    for j:=0 to 11 do begin
+      if pole[i, j] = 2 then pole[i,j]:=0;
+    end;
   end;
 end;
 
